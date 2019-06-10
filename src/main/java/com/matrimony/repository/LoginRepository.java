@@ -7,5 +7,8 @@ import com.matrimony.entity.Login;
 
 @Repository
 public interface LoginRepository extends JpaRepository<Login, Long> {
+	
 	Login findByLoginNameAndPassword(String loginName, String password);
+
+	Login findByLoginName(String emailIdDto);
 }

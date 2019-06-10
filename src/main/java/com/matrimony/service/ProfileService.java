@@ -3,12 +3,14 @@ package com.matrimony.service;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.matrimony.dto.ProfileDto;
 import com.matrimony.entity.Login;
 import com.matrimony.entity.Profile;
+import com.matrimony.exception.MatrimonyApplicationException;
 import com.matrimony.repository.LoginRepository;
 import com.matrimony.repository.ProfileRepository;
 
@@ -17,13 +19,18 @@ public class ProfileService {
 
 	@Autowired
 	ProfileRepository profileRepository;
-	
+
 	@Autowired
 	LoginRepository loginRepository;
 
 	private static Logger logger = Logger.getLogger(ProfileService.class.getName());
 
 	public Login createProfile(ProfileDto profileDto) {
+
+		Login loginDetail = loginRepository.findByLoginName(profileDto.getEmailIdDto());
+		if (null != loginDetail) {
+			throw new MatrimonyApplicationException("User already exists...!!");
+		}
 
 		logger.info("success");
 		logger.log(Level.FINE, "suceess", profileDto.toString());
@@ -43,7 +50,7 @@ public class ProfileService {
 
 		Login login = new Login();
 		login.setPassword(profileDto.getFirstNameDto());
-		login.setLoginName(profileDto.getFirstNameDto().substring(0, 3) + profileDto.getLastNameDto().substring(0, 3));
+		login.setLoginName(profileDto.getEmailIdDto());
 		login.setActionMessage("success");
 
 		// login.setProfile(profileDto);
