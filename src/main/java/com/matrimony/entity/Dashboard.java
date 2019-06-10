@@ -18,9 +18,9 @@ public class Dashboard implements Serializable {
 	private String profileName;
 	private Long interestedProfileId;
 	private String interestedProfileName;
-	private Integer acceptedProfileID;
+	private Long acceptedProfileID;
 	private String acceptedProfileName;
-	private Integer rejectedProfileId;
+	private Long rejectedProfileId;
 	private String rejectedProfileName;
 
 	public Long getDashboardId() {
@@ -63,11 +63,11 @@ public class Dashboard implements Serializable {
 		this.interestedProfileName = interestedProfileName;
 	}
 
-	public Integer getAcceptedProfileID() {
+	public Long getAcceptedProfileID() {
 		return acceptedProfileID;
 	}
 
-	public void setAcceptedProfileID(Integer acceptedProfileID) {
+	public void setAcceptedProfileID(Long acceptedProfileID) {
 		this.acceptedProfileID = acceptedProfileID;
 	}
 
@@ -79,11 +79,11 @@ public class Dashboard implements Serializable {
 		this.acceptedProfileName = acceptedProfileName;
 	}
 
-	public Integer getRejectedProfileId() {
+	public Long getRejectedProfileId() {
 		return rejectedProfileId;
 	}
 
-	public void setRejectedProfileId(Integer rejectedProfileId) {
+	public void setRejectedProfileId(Long rejectedProfileId) {
 		this.rejectedProfileId = rejectedProfileId;
 	}
 

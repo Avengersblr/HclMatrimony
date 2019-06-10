@@ -39,13 +39,13 @@ public class DashboardServiceImplTest {
 	public static void setUp() {
 
 		dashboard.setDashboardId(11L);
-		dashboard.setAcceptedProfileID(1);
+		dashboard.setAcceptedProfileID(1L);
 		dashboard.setAcceptedProfileName("qwe");
 		dashboard.setInterestedProfileId(2L);
 		dashboard.setInterestedProfileName("asd");
 		dashboard.setProfileId(3L);
 		dashboard.setProfileName("zxc");
-		dashboard.setRejectedProfileId(4);
+		dashboard.setRejectedProfileId(4L);
 		expectval.add(dashboard);
 	}
 

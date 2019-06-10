@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.matrimony.dto.DashboardDto;
 import com.matrimony.entity.Dashboard;
 import com.matrimony.entity.Profile;
 import com.matrimony.repository.DashboardRepository;
@@ -52,5 +53,48 @@ public class DashboardService {
 	
 	public List<Dashboard> getRejectedProfiles(Long profileId) {
 		return dashboardRepository.getAllRejectedProfiles(profileId);
+	}
+	
+	public Dashboard updateInterest(DashboardDto profileDto) {
+		Dashboard newOrUpdated = null;
+		Long actionProfileID = profileDto.getActionProfileId();
+		Long profileId = profileDto.getProfileId();
+		Dashboard actionProfile = dashboardRepository.findByProfileIdAndInterestedProfileId(actionProfileID, profileId);
+		Dashboard newProfile = new Dashboard();
+		newProfile.setProfileId(profileDto.getActionProfileId());
+		newProfile.setProfileName(profileDto.getActionProfileName());
+		if (profileDto.getAction().equalsIgnoreCase("Interest")) {
+			newProfile.setInterestedProfileId(profileDto.getProfileId());
+			newProfile.setInterestedProfileName(profileDto.getProfileName());
+		}
+		newOrUpdated = dashboardRepository.save(newProfile);
+		return newOrUpdated;
+	}
+	
+	public Dashboard updateAcceptReject(DashboardDto profileDto) {
+		Dashboard newOrUpdated = null;
+		Long actionProfileID = profileDto.getActionProfileId();
+		Long profileId = profileDto.getProfileId();
+		Dashboard actionProfile = dashboardRepository.findByProfileIdAndInterestedProfileId(actionProfileID, profileId);
+		
+		if (actionProfile != null) {
+			if (profileDto.getAction().equalsIgnoreCase("Accept")) {
+				actionProfile.setAcceptedProfileID(profileDto.getProfileId());
+				actionProfile.setAcceptedProfileName(profileDto.getProfileName());
+				actionProfile.setInterestedProfileId(null);
+				actionProfile.setInterestedProfileName(null);
+				actionProfile.setRejectedProfileId(null);
+				actionProfile.setRejectedProfileName(null);
+			} else if (profileDto.getAction().equalsIgnoreCase("Reject")) {
+				actionProfile.setRejectedProfileId(profileDto.getProfileId());
+				actionProfile.setRejectedProfileName(profileDto.getProfileName());
+				actionProfile.setInterestedProfileId(null);
+				actionProfile.setInterestedProfileName(null);
+				actionProfile.setAcceptedProfileID(null);
+				actionProfile.setAcceptedProfileName(null);
+			} 
+			newOrUpdated = dashboardRepository.save(actionProfile);
+		} 
+		return newOrUpdated;
 	}
 }

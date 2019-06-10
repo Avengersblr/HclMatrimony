@@ -1,17 +1,17 @@
 package com.matrimony.dto;
 
 public class DashboardDto {
-	private Integer profileId;
+	private Long profileId;
 	private String profileName;
-	private Integer actionProfileId;
+	private Long actionProfileId;
 	private String actionProfileName;
 	private String action;
 
-	public Integer getProfileId() {
+	public Long getProfileId() {
 		return profileId;
 	}
 
-	public void setProfileId(Integer profileId) {
+	public void setProfileId(Long profileId) {
 		this.profileId = profileId;
 	}
 
@@ -23,11 +23,11 @@ public class DashboardDto {
 		this.profileName = profileName;
 	}
 
-	public Integer getActionProfileId() {
+	public Long getActionProfileId() {
 		return actionProfileId;
 	}
 
-	public void setActionProfileId(Integer actionProfileId) {
+	public void setActionProfileId(Long actionProfileId) {
 		this.actionProfileId = actionProfileId;
 	}
 

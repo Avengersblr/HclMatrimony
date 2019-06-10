@@ -9,8 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.matrimony.dto.DashboardDto;
 import com.matrimony.entity.Dashboard;
 import com.matrimony.entity.Profile;
 import com.matrimony.service.DashboardService;
@@ -44,5 +47,17 @@ public class DashboardController {
 	@GetMapping("/getRejectedProfile/{profileId}")
 	public List<Dashboard> getRejectedProfile(@PathVariable Long profileId) {
 		return dashboardService.getRejectedProfiles(profileId);
+	}
+
+	@PutMapping("/updateInterest")
+	public ResponseEntity<Dashboard> updateInterest(@RequestBody DashboardDto dashboardDto) {
+		Dashboard dashboard = dashboardService.updateInterest(dashboardDto);
+		return new ResponseEntity<Dashboard>(dashboard, HttpStatus.OK);
+	}
+
+	@PutMapping("/updateAcceptReject")
+	public ResponseEntity<Dashboard> updateAcceptReject(@RequestBody DashboardDto profileDto) {
+		Dashboard dashboard = dashboardService.updateAcceptReject(profileDto);
+		return new ResponseEntity<Dashboard>(dashboard, HttpStatus.OK);
 	}
 }
