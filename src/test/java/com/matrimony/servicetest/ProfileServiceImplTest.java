@@ -23,7 +23,7 @@ import com.matrimony.service.ProfileService;
 import junit.framework.Assert;
 
 public class ProfileServiceImplTest {
-	
+
 	@InjectMocks
 	ProfileService profileService;
 
@@ -50,6 +50,7 @@ public class ProfileServiceImplTest {
 	@BeforeClass
 	public static void setUp() {
 
+		ProfileDto.setProfileIdDto(10L);
 		ProfileDto.setAgeDto(12);
 		ProfileDto.setCasteDto("asd");
 		ProfileDto.setEmailIdDto("rohit@gmail");
@@ -70,12 +71,13 @@ public class ProfileServiceImplTest {
 		profile.setProfileId(111L);
 		profile.setReligionPreference(ProfileDto.getReligionPreferenceDto());
 		profile.setSalary(ProfileDto.getSalaryDto());
+		login.setProfile(profile);
 		lst.add(profile);
 
 		login.setPassword(ProfileDto.getFirstNameDto());
 		login.setLoginName(ProfileDto.getFirstNameDto().substring(0, 3) + ProfileDto.getLastNameDto().substring(0, 3));
 		login.setActionMessage("success");
-
+		
 		loginDto.setLoginName("RohKum");
 		loginDto.setPassword("Rohit");
 
