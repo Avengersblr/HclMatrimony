@@ -6,7 +6,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 public class ProfileDto {
-	private Integer profileIdDto;
+	private Long profileIdDto;
 	private String firstNameDto;
 	private String lastNameDto;
 	private Integer ageDto;
@@ -19,10 +19,10 @@ public class ProfileDto {
 	private String emailIdDto;
 	@Temporal(TemporalType.DATE)
 	private Date dobDto;
-	public Integer getProfileIdDto() {
+	public Long getProfileIdDto() {
 		return profileIdDto;
 	}
-	public void setProfileIdDto(Integer profileIdDto) {
+	public void setProfileIdDto(Long profileIdDto) {
 		this.profileIdDto = profileIdDto;
 	}
 	public String getFirstNameDto() {

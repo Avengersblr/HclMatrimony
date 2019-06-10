@@ -5,12 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.matrimony.exception.MatrimonyDetailNotfoundException;
+import com.matrimony.exception.MatrimonyApplicationException;
 
 @ControllerAdvice
 public class MatrimonyExceptionController {
-	@ExceptionHandler(value = MatrimonyDetailNotfoundException.class)
-	   public ResponseEntity<Object> exception(MatrimonyDetailNotfoundException exception) {
-	      return new ResponseEntity<>("Matrimony login user not found", HttpStatus.NOT_FOUND);
+	@ExceptionHandler(value = MatrimonyApplicationException.class)
+	   public ResponseEntity<Object> exception(MatrimonyApplicationException exception) {
+	      return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
 	   }
 }
